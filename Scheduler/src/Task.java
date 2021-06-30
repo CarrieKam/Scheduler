@@ -2,14 +2,7 @@
 public class Task {
 
 	private String name, date, time, description;
-	
-	public Task(String name, String date, String time, String description ) {
-		this.name = name;
-		this.date = date;
-		this.time = time;
-		this.description = description;
-	}
-	
+		
 	public String getName() {
 		return name;
 	}

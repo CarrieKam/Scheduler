@@ -20,8 +20,11 @@ public class AddTaskPannel extends JFrame {
 	private JLabel lblAddNewTask;
 	private JTextField textFieldName;
 	private JTextField textFieldDate;
-	private JTextField textField;
+	private JTextField textFieldTime;
 	private JTextField textDescription;
+	
+	
+	private Task task;
 
 	/**
 	 * Launch the application.
@@ -49,12 +52,14 @@ public class AddTaskPannel extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension ecranDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setLocation(ecranDimension.width / 2 - getSize().width / 2, ecranDimension.height / 2 - getSize().height / 2);
 
+		task = new Task();
+		
 		lblAddNewTask = new JLabel("Add New Task");
 		lblAddNewTask.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 26));
 		lblAddNewTask.setBounds(330, 29, 172, 27);
@@ -69,7 +74,7 @@ public class AddTaskPannel extends JFrame {
 		textFieldName.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				task.setName(textFieldName.getText());
 			}
 		});
 		textFieldName.setBounds(227, 101, 562, 32);
@@ -85,7 +90,7 @@ public class AddTaskPannel extends JFrame {
 		textFieldDate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				task.setTime(textFieldDate.getText());
 			}
 		});
 		textFieldDate.setBounds(227, 160, 562, 32);
@@ -103,17 +108,17 @@ public class AddTaskPannel extends JFrame {
 		lblTime.setBounds(108, 252, 57, 13);
 		contentPane.add(lblTime);
 
-		textField = new JTextField();
-		textField.addActionListener(new ActionListener() {
+		textFieldTime = new JTextField();
+		textFieldTime.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				task.setTime(textFieldTime.getText());
 				
 			}
 		});
-		textField.setColumns(10);
-		textField.setBounds(227, 246, 562, 32);
-		contentPane.add(textField);
+		textFieldTime.setColumns(10);
+		textFieldTime.setBounds(227, 246, 562, 32);
+		contentPane.add(textFieldTime);
 
 		JLabel lblTimeFormat = new JLabel("e.g. (hh:mm)");
 		lblTimeFormat.setForeground(Color.GRAY);
@@ -130,7 +135,7 @@ public class AddTaskPannel extends JFrame {
 		textDescription.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				task.setDescription(textDescription.getText());
 				
 			}
 		});
