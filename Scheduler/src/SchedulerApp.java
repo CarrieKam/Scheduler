@@ -24,9 +24,6 @@ public class SchedulerApp extends JFrame {
 	private ArrayList<Task> taskList = new ArrayList<>();
 	
 	private JLabel lblTitle;
-	private JLabel lblNewLabel;
-	private JLabel lblTime;
-	private JLabel lblTask;
 	private JScrollPane scrollPane;
 	private JButton btnAddTask;
 
@@ -73,24 +70,9 @@ public class SchedulerApp extends JFrame {
 		lblTitle.setBounds(340, 11, 171, 32);
 		contentPane.add(lblTitle);
 
-		lblNewLabel = new JLabel("Date:");
-		lblNewLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 21));
-		lblNewLabel.setBounds(65, 72, 130, 32);
-		contentPane.add(lblNewLabel);
-
-		lblTime = new JLabel("Time:");
-		lblTime.setFont(new Font("Tw Cen MT", Font.BOLD, 21));
-		lblTime.setBounds(152, 72, 96, 32);
-		contentPane.add(lblTime);
-
-		lblTask = new JLabel("Tasks:");
-		lblTask.setFont(new Font("Tw Cen MT", Font.BOLD, 21));
-		lblTask.setBounds(279, 72, 130, 32);
-		contentPane.add(lblTask);
-
 		scrollPane = new JScrollPane();
 		scrollPane.setEnabled(false);
-		scrollPane.setBounds(20, 103, 770, 306);
+		scrollPane.setBounds(10, 69, 780, 340);
 		contentPane.add(scrollPane);
 
 		JTextArea textArea = new JTextArea();
