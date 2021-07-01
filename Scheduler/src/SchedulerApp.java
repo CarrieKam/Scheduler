@@ -28,6 +28,7 @@ public class SchedulerApp extends JFrame {
 	private JScrollPane scrollPane;
 	private JButton btnAddTask;
 	private JTextArea textArea;
+	private String text = "";
 
 	/**
 	 * Launch the application.
@@ -96,7 +97,6 @@ public class SchedulerApp extends JFrame {
 		btnAddTask.setBounds(30, 424, 130, 32);
 		contentPane.add(btnAddTask);
 		
-		
 		taskPannel.addNewTaskListener(new NewTaskListener() {
 			@Override
 			public void modeHome(boolean modeHome) {
@@ -105,31 +105,43 @@ public class SchedulerApp extends JFrame {
 				}
 			}
 
+			@Override
+			public void setDate(String date) {
+				// TODO Auto-generated method stub
+				text += "Date : " + date  + "\n";
+				
+			}
+
+			@Override
+			public void setTime(String time) {
+				// TODO Auto-generated method stub
+				text += "Time : " + time + "\n";
+			}
+
+			@Override
+			public void setName(String name) {
+				text += "Task name : "  + name + "\n";
+				
+			}
+
+			@Override
+			public void setDescription(String description) {
+				// TODO Auto-generated method stub
+				text += "Description : " + description + "\n" + "\n";
+				text();
+			}
+
 		});
 	}
     private void windowHome() {
-        taskList.add(taskPannel.getTask());
-       
-        for (int k = 0; k < taskList.size(); k++) {
-        System.out.println("Niao    " + taskList.get(k).getName());
-        }
-        
         taskPannel.dispose();
-        textArea.setText(text());
+        
         setVisible(true);
         
     }
-
-    private String text() {
-        String text = "";
-        System.out.println("Niao 2   " + taskList.get(0).getName());
-        for (int i = 0; i < taskList.size(); i++) {
-            text += "Date : " + taskList.get(i).getDate() + "\n" + "Time : " + taskList.get(i).getTime() + "\n"
-                    + "Task name : "  + taskList.get(i).getName() + "\n" + "Description : "
-                    + taskList.get(i).getDescription() + "\n" + "\n";
-        }
-        System.out.println("TExt  = = " + text);
-        return text;
+    
+    private void text() {
+    	textArea.setText(text);
     }
 
 }

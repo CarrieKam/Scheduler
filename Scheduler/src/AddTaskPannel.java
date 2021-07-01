@@ -150,16 +150,17 @@ public class AddTaskPannel extends JFrame {
 		for (NewTaskListener objEcout : listListener) {
 			objEcout.modeHome(true);
 		}
+		for (NewTaskListener objEcout : listListener) {
+			objEcout.setName(textFieldName.getText());
+			objEcout.setTime(textFieldTime.getText());
+			objEcout.setDate(textFieldDate.getText());
+			objEcout.setDescription(textDescription.getText());
+			
+			textFieldDate.setText("");
+			textFieldTime.setText("");
+			textFieldName.setText("");
+			textDescription.setText("");
+;		}
+	
 	}
-
-	public Task getTask() {
-		task.setName(textFieldName.getText());
-		task.setTime(textFieldTime.getText());
-		task.setDescription(textDescription.getText());
-		task.setDate(textFieldDate.getText());
-		System.out.println(task.getName());
-		System.out.println(textFieldName.getText());
-		return task;
-	}
-
 }
