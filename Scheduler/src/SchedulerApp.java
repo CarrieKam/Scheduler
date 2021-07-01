@@ -10,6 +10,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import interfaces.NewTaskListener;
+
 import java.awt.Toolkit;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -72,7 +74,7 @@ public class SchedulerApp extends JFrame {
 
 		scrollPane = new JScrollPane();
 		scrollPane.setEnabled(false);
-		scrollPane.setBounds(10, 69, 780, 340);
+		scrollPane.setBounds(29, 63, 761, 346);
 		contentPane.add(scrollPane);
 
 		JTextArea textArea = new JTextArea();
@@ -91,5 +93,27 @@ public class SchedulerApp extends JFrame {
 		});
 		btnAddTask.setBounds(30, 424, 130, 32);
 		contentPane.add(btnAddTask);
+		
+		taskPannel.addNewTaskListener(new NewTaskListener() {
+
+			/**
+			 * Methode servant a changer en mode accueil quand l'utilisateur le veut
+			 */
+			@Override
+			public void modeHome(boolean modeHome) {
+				if (modeHome) {
+					windowHome();
+				}
+			}
+
+		});
+
 	}
+	
+	private void windowHome() {
+		taskList.add(taskPannel.getTask());
+		taskPannel.dispose();
+		setVisible(true);
+	}
+	
 }

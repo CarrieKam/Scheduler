@@ -1,18 +1,22 @@
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Toolkit;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JTextField;
-import java.awt.Color;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import interfaces.NewTaskListener;
 
 public class AddTaskPannel extends JFrame {
 
@@ -22,8 +26,9 @@ public class AddTaskPannel extends JFrame {
 	private JTextField textFieldDate;
 	private JTextField textFieldTime;
 	private JTextField textDescription;
-	
-	
+
+	private ArrayList<NewTaskListener> listListener = new ArrayList<NewTaskListener>();
+
 	private Task task;
 
 	/**
@@ -52,14 +57,14 @@ public class AddTaskPannel extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension ecranDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		setLocation(ecranDimension.width / 2 - getSize().width / 2, ecranDimension.height / 2 - getSize().height / 2);
 
 		task = new Task();
-		
+
 		lblAddNewTask = new JLabel("Add New Task");
 		lblAddNewTask.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 26));
 		lblAddNewTask.setBounds(330, 29, 172, 27);
@@ -73,7 +78,7 @@ public class AddTaskPannel extends JFrame {
 		textFieldName = new JTextField();
 		textFieldName.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				task.setName(textFieldName.getText());
 			}
 		});
@@ -89,7 +94,7 @@ public class AddTaskPannel extends JFrame {
 		textFieldDate = new JTextField();
 		textFieldDate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				task.setTime(textFieldDate.getText());
 			}
 		});
@@ -111,9 +116,9 @@ public class AddTaskPannel extends JFrame {
 		textFieldTime = new JTextField();
 		textFieldTime.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				task.setTime(textFieldTime.getText());
-				
+
 			}
 		});
 		textFieldTime.setColumns(10);
@@ -134,16 +139,25 @@ public class AddTaskPannel extends JFrame {
 		textDescription = new JTextField();
 		textDescription.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				task.setDescription(textDescription.getText());
-				
+
 			}
 		});
 		textDescription.setBounds(227, 351, 562, 218);
 		contentPane.add(textDescription);
 		textDescription.setColumns(10);
-		
+
 		JButton btnSave = new JButton("Save");
+		btnSave.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				leverModeAccueil();
+			}
+		});
+		
+		
+		
 		btnSave.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSave.setBounds(813, 600, 86, 39);
 		contentPane.add(btnSave);
@@ -152,4 +166,19 @@ public class AddTaskPannel extends JFrame {
 		setTitle("Add New Task");
 
 	}
+	public void addNewTaskListener(NewTaskListener objEcout) {
+			listListener.add(objEcout);
+		}
+	
+	private void leverModeAccueil() {
+		for (NewTaskListener objEcout : listListener) {
+			objEcout.modeHome(true);
+		}
+	}
+	
+	public Task getTask() {
+		return null;
+	}
+	
+	
 }
