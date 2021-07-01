@@ -54,6 +54,7 @@ public class AddTaskPannel extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 935, 690);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(204, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -66,8 +67,8 @@ public class AddTaskPannel extends JFrame {
 		task = new Task();
 
 		lblAddNewTask = new JLabel("Add New Task");
-		lblAddNewTask.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 26));
-		lblAddNewTask.setBounds(330, 29, 172, 27);
+		lblAddNewTask.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 33));
+		lblAddNewTask.setBounds(330, 29, 205, 27);
 		contentPane.add(lblAddNewTask);
 
 		JLabel lblTaskName = new JLabel("Task name :");

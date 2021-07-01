@@ -15,6 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 import interfaces.NewTaskListener;
+import java.awt.Color;
 
 public class SchedulerApp extends JFrame {
 
@@ -53,6 +54,7 @@ public class SchedulerApp extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 837, 505);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 228, 225));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -69,13 +71,13 @@ public class SchedulerApp extends JFrame {
 		taskPannel = new AddTaskPannel();
 
 		lblTitle = new JLabel("Scheduler");
-		lblTitle.setFont(new Font("Source Sans Pro", Font.BOLD, 26));
+		lblTitle.setFont(new Font("Tempus Sans ITC", Font.BOLD, 33));
 		lblTitle.setBounds(340, 11, 171, 32);
 		contentPane.add(lblTitle);
 
 		scrollPane = new JScrollPane();
 		scrollPane.setEnabled(false);
-		scrollPane.setBounds(29, 63, 761, 346);
+		scrollPane.setBounds(43, 66, 729, 343);
 		contentPane.add(scrollPane);
 
 		textArea = new JTextArea();
@@ -83,8 +85,10 @@ public class SchedulerApp extends JFrame {
 
 		textArea.setEditable(false);
 		textArea.setLineWrap(true);
-
+		textArea.setFont(new Font("Century Gothic", Font.PLAIN, 25));
+		
 		btnAddTask = new JButton("Add task");
+		btnAddTask.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnAddTask.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!taskPannel.isVisible()) {
@@ -108,26 +112,26 @@ public class SchedulerApp extends JFrame {
 			@Override
 			public void setDate(String date) {
 				// TODO Auto-generated method stub
-				text += "Date : " + date  + "\n";
+				text += " Date : " + date  + "\n";
 				
 			}
 
 			@Override
 			public void setTime(String time) {
 				// TODO Auto-generated method stub
-				text += "Time : " + time + "\n";
+				text += " Time : " + time + "\n";
 			}
 
 			@Override
 			public void setName(String name) {
-				text += "Task name : "  + name + "\n";
+				text += " Task name : "  + name + "\n";
 				
 			}
 
 			@Override
 			public void setDescription(String description) {
 				// TODO Auto-generated method stub
-				text += "Description : " + description + "\n" + "\n";
+				text += " Description : " + description + "\n" + "\n";
 				text();
 			}
 
