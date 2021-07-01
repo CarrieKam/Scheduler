@@ -2,7 +2,7 @@
 public class Task {
 
 	private String name, date, time, description;
-		
+	
 	public String getName() {
 		return name;
 	}
@@ -41,8 +41,5 @@ public class Task {
 	public void setDescription(String description) {
 		this.description = description;
 	}	
-	
-	
-	
 	
 }

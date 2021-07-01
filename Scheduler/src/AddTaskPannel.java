@@ -76,28 +76,18 @@ public class AddTaskPannel extends JFrame {
 		contentPane.add(lblTaskName);
 
 		textFieldName = new JTextField();
-		textFieldName.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				task.setName(textFieldName.getText());
-			}
-		});
 		textFieldName.setBounds(227, 101, 562, 32);
 		contentPane.add(textFieldName);
 		textFieldName.setColumns(10);
 
+		
 		JLabel lblDate = new JLabel("Date :");
 		lblDate.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblDate.setBounds(108, 166, 57, 13);
 		contentPane.add(lblDate);
 
 		textFieldDate = new JTextField();
-		textFieldDate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
 
-				task.setTime(textFieldDate.getText());
-			}
-		});
 		textFieldDate.setBounds(227, 160, 562, 32);
 		contentPane.add(textFieldDate);
 		textFieldDate.setColumns(10);
@@ -114,13 +104,7 @@ public class AddTaskPannel extends JFrame {
 		contentPane.add(lblTime);
 
 		textFieldTime = new JTextField();
-		textFieldTime.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
 
-				task.setTime(textFieldTime.getText());
-
-			}
-		});
 		textFieldTime.setColumns(10);
 		textFieldTime.setBounds(227, 246, 562, 32);
 		contentPane.add(textFieldTime);
@@ -137,13 +121,6 @@ public class AddTaskPannel extends JFrame {
 		contentPane.add(lblDescription);
 
 		textDescription = new JTextField();
-		textDescription.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				task.setDescription(textDescription.getText());
-
-			}
-		});
 		textDescription.setBounds(227, 351, 562, 218);
 		contentPane.add(textDescription);
 		textDescription.setColumns(10);
@@ -151,13 +128,11 @@ public class AddTaskPannel extends JFrame {
 		JButton btnSave = new JButton("Save");
 		btnSave.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent e) {
 				leverModeAccueil();
 			}
 		});
-		
-		
-		
+
 		btnSave.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSave.setBounds(813, 600, 86, 39);
 		contentPane.add(btnSave);
@@ -166,19 +141,25 @@ public class AddTaskPannel extends JFrame {
 		setTitle("Add New Task");
 
 	}
+
 	public void addNewTaskListener(NewTaskListener objEcout) {
-			listListener.add(objEcout);
-		}
-	
+		listListener.add(objEcout);
+	}
+
 	private void leverModeAccueil() {
 		for (NewTaskListener objEcout : listListener) {
 			objEcout.modeHome(true);
 		}
 	}
-	
+
 	public Task getTask() {
-		return null;
+		task.setName(textFieldName.getText());
+		task.setTime(textFieldTime.getText());
+		task.setDescription(textDescription.getText());
+		task.setDate(textFieldDate.getText());
+		System.out.println(task.getName());
+		System.out.println(textFieldName.getText());
+		return task;
 	}
-	
-	
+
 }

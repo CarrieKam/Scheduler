@@ -1,8 +1,12 @@
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -12,22 +16,18 @@ import javax.swing.border.EmptyBorder;
 
 import interfaces.NewTaskListener;
 
-import java.awt.Toolkit;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 public class SchedulerApp extends JFrame {
 
 	private JPanel contentPane;
-	
+
 	private AddTaskPannel taskPannel;
-	
+
 	private ArrayList<Task> taskList = new ArrayList<>();
-	
+
 	private JLabel lblTitle;
 	private JScrollPane scrollPane;
 	private JButton btnAddTask;
+	private JTextArea textArea;
 
 	/**
 	 * Launch the application.
@@ -64,9 +64,9 @@ public class SchedulerApp extends JFrame {
 		setLocation(ecranDimension.width / 2 - getSize().width / 2, ecranDimension.height / 2 - getSize().height / 2);
 
 		setLocationRelativeTo(null);
-		
+
 		taskPannel = new AddTaskPannel();
-		
+
 		lblTitle = new JLabel("Scheduler");
 		lblTitle.setFont(new Font("Source Sans Pro", Font.BOLD, 26));
 		lblTitle.setBounds(340, 11, 171, 32);
@@ -77,28 +77,27 @@ public class SchedulerApp extends JFrame {
 		scrollPane.setBounds(29, 63, 761, 346);
 		contentPane.add(scrollPane);
 
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		scrollPane.setViewportView(textArea);
+
 		textArea.setEditable(false);
 		textArea.setLineWrap(true);
-		
+
 		btnAddTask = new JButton("Add task");
 		btnAddTask.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!taskPannel.isVisible()) {
+					 taskPannel.dispose();
 					taskPannel.setVisible(true);
 					setVisible(false);
-				}		
+				}
 			}
 		});
 		btnAddTask.setBounds(30, 424, 130, 32);
 		contentPane.add(btnAddTask);
 		
+		
 		taskPannel.addNewTaskListener(new NewTaskListener() {
-
-			/**
-			 * Methode servant a changer en mode accueil quand l'utilisateur le veut
-			 */
 			@Override
 			public void modeHome(boolean modeHome) {
 				if (modeHome) {
@@ -107,13 +106,30 @@ public class SchedulerApp extends JFrame {
 			}
 
 		});
+	}
+    private void windowHome() {
+        taskList.add(taskPannel.getTask());
+       
+        for (int k = 0; k < taskList.size(); k++) {
+        System.out.println("Niao    " + taskList.get(k).getName());
+        }
+        
+        taskPannel.dispose();
+        textArea.setText(text());
+        setVisible(true);
+        
+    }
 
-	}
-	
-	private void windowHome() {
-		taskList.add(taskPannel.getTask());
-		taskPannel.dispose();
-		setVisible(true);
-	}
-	
+    private String text() {
+        String text = "";
+        System.out.println("Niao 2   " + taskList.get(0).getName());
+        for (int i = 0; i < taskList.size(); i++) {
+            text += "Date : " + taskList.get(i).getDate() + "\n" + "Time : " + taskList.get(i).getTime() + "\n"
+                    + "Task name : "  + taskList.get(i).getName() + "\n" + "Description : "
+                    + taskList.get(i).getDescription() + "\n" + "\n";
+        }
+        System.out.println("TExt  = = " + text);
+        return text;
+    }
+
 }
