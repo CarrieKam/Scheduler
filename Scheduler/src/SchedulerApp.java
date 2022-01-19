@@ -22,9 +22,6 @@ public class SchedulerApp extends JFrame {
 	private JPanel contentPane;
 
 	private AddTaskPannel taskPannel;
-
-	private ArrayList<Task> taskList = new ArrayList<>();
-
 	private JLabel lblTitle;
 	private JScrollPane scrollPane;
 	private JButton btnAddTask;
